@@ -22,14 +22,14 @@ class AnimationScrollView extends Component {
     this.setState({dimensions: {window}})
   }
 
-  componentDidMount() {
-    Dimensions.addEventListener('change', this.onDimensionsChange)
-  }
+  // componentDidMount() {
+  //   Dimensions.addEventListener('change', this.onDimensionsChange)
+  // }
   //Hàm addEventListener là thêm sự kiện
   //Hàm removeEventListener là xóa bỏ đi sự kiện
-  componentWillUnmount() {
-    Dimensions.removeEventListener('change', this.onDimensionsChange)
-  }
+  // componentWillUnmount() {
+  //   Dimensions.removeEventListener('change', this.onDimensionsChange)
+  // }
 
   render() {
     const windowWidth = this.state.dimensions.window.width
@@ -37,12 +37,8 @@ class AnimationScrollView extends Component {
     return(
       <View style={animationScrollViewStyles.container}>
         <View style={animationScrollViewStyles.contentBox}>
-          {
-            this._renderShowImageBox(windowWidth)
-          }
-          {
-            this._renderShowIndicator(windowWidth)
-          }
+          {this._renderShowImageBox(windowWidth)}
+          {this._renderShowIndicator(windowWidth)}
         </View>
 
       </View>
@@ -53,6 +49,7 @@ class AnimationScrollView extends Component {
       <ScrollView
         horizontal={true}
         pagingEnabled
+        // để hình ảnh zô khớp, chuyển hẳn sang trang
         showsHorizontalScrollIndicator={false}
         onScroll={Animated.event([
           {
@@ -112,7 +109,7 @@ class AnimationScrollView extends Component {
             })
             return(
               <Animated.View
-                key={imageIndex}
+                // key={imageIndex}
                 style={[animationScrollViewStyles.point, {width}]}
               />
             )
